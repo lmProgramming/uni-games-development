@@ -3,6 +3,7 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     private CharacterController _controller;
+    [SerializeField] private float speed;
 
     private void Awake()
     {
@@ -13,6 +14,6 @@ public class Character : MonoBehaviour
     {
         var move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         
-        _controller.Move(move * Time.deltaTime);
+        _controller.Move(move * (Time.deltaTime * speed));
     }
 }
