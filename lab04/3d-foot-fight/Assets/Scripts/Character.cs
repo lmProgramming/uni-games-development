@@ -1,4 +1,4 @@
-using CharacterState;
+using MovementState;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -43,6 +43,7 @@ public class Character : MonoBehaviour
     public Vector2 LookDirection { get; private set; } = Vector2.zero;
     public Vector2 MoveDirection { get; private set; } = Vector2.zero;
     public bool JumpRequested { get; private set; }
+    public bool AttackRequested { get; set; }
     public float VerticalVelocity { get; set; }
     public bool IsGrounded { get; private set; }
     public GroundedState GroundedState { get; private set; }
@@ -79,6 +80,7 @@ public class Character : MonoBehaviour
         _stateMachine.CurrentState.LogicUpdate();
 
         JumpRequested = false;
+        AttackRequested = false;
     }
 
     private void FixedUpdate()
@@ -161,6 +163,11 @@ public class Character : MonoBehaviour
     public void OnJump(InputValue value)
     {
         JumpRequested = value.isPressed;
+    }
+
+    public void OnAttack(InputValue value)
+    {
+        AttackRequested = value.isPressed;
     }
 
     #endregion

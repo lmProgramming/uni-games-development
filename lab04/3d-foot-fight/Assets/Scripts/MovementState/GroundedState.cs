@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace CharacterState
+namespace MovementState
 {
     public class GroundedState : CharacterState
     {
@@ -39,7 +39,7 @@ namespace CharacterState
             {
                 Character.VerticalVelocity = Mathf.Sqrt(Character.jumpHeight * -2f * Character.gravityValue);
                 _jumpRequested = false;
-                StateMachine.ChangeState(Character.AirborneState);
+                Machine.ChangeState(Character.AirborneState);
                 return;
             }
 
@@ -50,7 +50,7 @@ namespace CharacterState
         public override void PostPhysicsUpdate()
         {
             if (!Character.IsGrounded)
-                StateMachine.ChangeState(Character.AirborneState);
+                Machine.ChangeState(Character.AirborneState);
         }
 
         public override void Exit()

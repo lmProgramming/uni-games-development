@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace CharacterState
+namespace MovementState
 {
     public class AirborneState : CharacterState
     {
@@ -31,7 +31,7 @@ namespace CharacterState
             if (Character.IsGrounded &&
                 Character.VerticalVelocity <
                 0.0f)
-                StateMachine.ChangeState(Character.GroundedState);
+                Machine.ChangeState(Character.GroundedState);
         }
 
         public override void Exit()

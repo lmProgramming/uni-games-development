@@ -1,14 +1,14 @@
-namespace CharacterState
+using EasyStateMachine;
+
+namespace MovementState
 {
-    public abstract class CharacterState
+    public abstract class CharacterState : State<CharacterStateMachine, CharacterState>
     {
         protected readonly Character Character;
-        protected readonly CharacterStateMachine StateMachine;
 
-        protected CharacterState(Character character, CharacterStateMachine stateMachine)
+        protected CharacterState(Character character, CharacterStateMachine stateMachine) : base(stateMachine)
         {
             Character = character;
-            StateMachine = stateMachine;
         }
 
         public virtual void Enter()
