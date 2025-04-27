@@ -1,13 +1,15 @@
+using System;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class Damageable : MonoBehaviour
 {
     public float maxHealth = 100;
     public float currentHealth;
 
-    public UnityEvent onDeath;
-    public UnityEvent<float> onDamageTaken;
+    [SerializeField] public bool fullHealthOnStart = true;
+
+    public Action<float> OnDamageTaken;
+    public Action OnDeath;
 
     public void TakeDamage(float damage)
     {
@@ -19,8 +21,8 @@ public class Damageable : MonoBehaviour
 
         if (damage == 0 || currentHealth <= 0) return;
 
-        onDamageTaken.Invoke(damage);
+        OnDamageTaken.Invoke(damage);
         currentHealth -= damage;
-        if (currentHealth <= 0) onDeath.Invoke();
+        if (currentHealth <= 0) OnDeath.Invoke();
     }
 }

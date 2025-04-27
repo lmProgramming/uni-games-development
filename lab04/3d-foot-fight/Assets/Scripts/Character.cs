@@ -1,4 +1,5 @@
-using MovementState;
+using States.Fighting;
+using States.Movement;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,15 +8,15 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CharacterController))]
 public class Character : MonoBehaviour
 {
-    [Header("Movement Settings")] [SerializeField]
-    public float moveSpeed = 7f;
+    [Header("Movement Settings")]
+    [SerializeField] public float moveSpeed = 7f;
 
     [SerializeField] public float airMoveSpeedMultiplier = 0.8f;
     [SerializeField] public float jumpHeight = 2.0f;
     [SerializeField] public float gravityValue = -19.62f;
 
-    [Header("Look Settings")] [SerializeField]
-    private float lookSpeed = 2.0f;
+    [Header("Look Settings")]
+    [SerializeField] private float lookSpeed = 2.0f;
 
     [SerializeField] private float lookXLimit = 80.0f;
 
@@ -33,22 +34,22 @@ public class Character : MonoBehaviour
     [Tooltip("Distance the spherecast checks downwards.")] [SerializeField]
     private float groundCheckDistance = 0.3f;
 
+    [field: SerializeField]
+    public Damageable Damageable { get; private set; }
+
     private float _cameraRotationX;
     private bool _jumpRequested;
 
-    private CharacterStateMachine _stateMachine;
 
     public CharacterController Controller { get; private set; }
     public Camera PlayerCamera { get; private set; }
     public Vector2 LookDirection { get; private set; } = Vector2.zero;
     public Vector2 MoveDirection { get; private set; } = Vector2.zero;
     public bool JumpRequested { get; private set; }
-    public bool AttackRequested { get; set; }
+    public bool AttackRequested { get; private set; }
     public float VerticalVelocity { get; set; }
-    public bool IsGrounded { get; private set; }
-    public GroundedState GroundedState { get; private set; }
-    public AirborneState AirborneState { get; private set; }
 
+    public bool IsGrounded { get; private set; }
 
     private void Awake()
     {
@@ -61,23 +62,32 @@ public class Character : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        _stateMachine = new CharacterStateMachine();
+        _movementStateMachine = new MovementStateMachine();
 
-        GroundedState = new GroundedState(this, _stateMachine);
-        AirborneState = new AirborneState(this, _stateMachine);
+        GroundedState = new GroundedState(this, _movementStateMachine);
+        AirborneState = new AirborneState(this, _movementStateMachine);
+
+        _fightingStateMachine = new FightingStateMachine();
+
+        Ready = new Ready(this, _fightingStateMachine);
+        Swinging = new Swinging(this, _fightingStateMachine, 1);
     }
 
     private void Start()
     {
-        _stateMachine.Initialize(GroundedState);
+        _movementStateMachine.Initialize(GroundedState);
+        _fightingStateMachine.Initialize(Ready);
     }
 
     private void Update()
     {
         ProcessLook();
 
-        _stateMachine.CurrentState.HandleInput();
-        _stateMachine.CurrentState.LogicUpdate();
+        _movementStateMachine.CurrentState.HandleInput();
+        _movementStateMachine.CurrentState.LogicUpdate();
+
+        _fightingStateMachine.CurrentState.HandleInput();
+        _fightingStateMachine.CurrentState.LogicUpdate();
 
         JumpRequested = false;
         AttackRequested = false;
@@ -87,9 +97,9 @@ public class Character : MonoBehaviour
     {
         PerformGroundCheck();
 
-        _stateMachine.CurrentState.PhysicsUpdate();
+        _movementStateMachine.CurrentState.PhysicsUpdate();
 
-        _stateMachine.CurrentState.PostPhysicsUpdate();
+        _movementStateMachine.CurrentState.PostPhysicsUpdate();
     }
 
     private void OnDrawGizmosSelected()
@@ -147,6 +157,22 @@ public class Character : MonoBehaviour
         Cursor.lockState = isLocked ? CursorLockMode.None : CursorLockMode.Locked;
         Cursor.visible = !isLocked;
     }
+
+    #region fighting states
+
+    private FightingStateMachine _fightingStateMachine;
+    public FightingState Swinging { get; private set; }
+    public FightingState Ready { get; private set; }
+
+    #endregion
+
+    # region movement states
+
+    private MovementStateMachine _movementStateMachine;
+    public GroundedState GroundedState { get; private set; }
+    public AirborneState AirborneState { get; private set; }
+
+    #endregion
 
     #region New Unity Input System Callbacks
 

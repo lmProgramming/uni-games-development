@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 
-namespace MovementState
+namespace States.Movement
 {
     public class AirborneState : CharacterState
     {
-        public AirborneState(Character character, CharacterStateMachine stateMachine) : base(character, stateMachine)
+        public AirborneState(Character character, MovementStateMachine stateMachine) : base(character, stateMachine)
         {
         }
 

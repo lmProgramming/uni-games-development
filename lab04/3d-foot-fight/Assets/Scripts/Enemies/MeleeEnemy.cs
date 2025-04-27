@@ -5,21 +5,24 @@ namespace Enemies
 {
     public class MeleeEnemy : MonoBehaviour
     {
-        private NavMeshAgent agent;
+        private NavMeshAgent _agent;
+        private Damageable _damageable;
 
         private void Awake()
         {
-            agent = GetComponent<NavMeshAgent>();
+            _agent = GetComponent<NavMeshAgent>();
+            _damageable = GetComponent<Damageable>();
         }
 
         private void Start()
         {
+            _damageable.OnDeath += () => Destroy(gameObject);
         }
 
         // Update is called once per frame
         private void Update()
         {
-            agent.SetDestination(GameObject.FindGameObjectWithTag("Player").transform.position);
+            _agent.SetDestination(GameObject.FindGameObjectWithTag("Player").transform.position);
         }
     }
 }

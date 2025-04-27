@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 
-namespace MovementState
+namespace States.Movement
 {
     public class GroundedState : CharacterState
     {
         private bool _jumpRequested;
 
-        public GroundedState(Character character, CharacterStateMachine stateMachine) : base(character, stateMachine)
+        public GroundedState(Character character, MovementStateMachine stateMachine) : base(character, stateMachine)
         {
         }
 

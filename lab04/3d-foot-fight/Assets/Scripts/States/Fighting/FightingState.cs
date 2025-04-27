@@ -1,21 +1,23 @@
 using EasyStateMachine;
+using UnityEngine;
 
-namespace MovementState
+namespace States.Fighting
 {
-    public abstract class CharacterState : State<CharacterStateMachine, CharacterState>
+    public abstract class FightingState : State<FightingStateMachine, FightingState>
     {
         protected readonly Character Character;
 
-        protected CharacterState(Character character, CharacterStateMachine stateMachine) : base(stateMachine)
+        protected FightingState(Character character, FightingStateMachine stateMachine) : base(stateMachine)
         {
             Character = character;
         }
 
-        public virtual void Enter()
+        public override void Enter()
         {
+            Debug.Log(this);
         }
 
-        public virtual void Exit()
+        public override void Exit()
         {
         }
 
