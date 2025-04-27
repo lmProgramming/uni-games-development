@@ -542,7 +542,7 @@ MonoBehaviour:
     m_Value: {fileID: 8900000, guid: 6b057cc84b9df8440b171f96ff306279, type: 3}
   spaceEmissionMultiplier:
     m_OverrideState: 1
-    m_Value: 1000
+    m_Value: 180.2
   spaceRotation:
     m_OverrideState: 0
     m_Value: {x: 0, y: 0, z: 0}
