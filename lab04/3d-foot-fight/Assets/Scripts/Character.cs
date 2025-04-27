@@ -77,6 +77,8 @@ public class Character : MonoBehaviour
 
         _stateMachine.CurrentState.HandleInput();
         _stateMachine.CurrentState.LogicUpdate();
+
+        JumpRequested = false;
     }
 
     private void FixedUpdate()
@@ -90,6 +92,8 @@ public class Character : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
+        PerformGroundCheck();
+
         var transparentGreen = new Color(0.0f, 1.0f, 0.0f, 0.35f);
         var transparentRed = new Color(1.0f, 0.0f, 0.0f, 0.35f);
 
@@ -156,9 +160,7 @@ public class Character : MonoBehaviour
 
     public void OnJump(InputValue value)
     {
-        if (!value.isPressed) return;
-
-        JumpRequested = true;
+        JumpRequested = value.isPressed;
     }
 
     #endregion
