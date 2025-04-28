@@ -14,15 +14,25 @@ namespace Enemies
             _damageable = GetComponent<Damageable>();
         }
 
-        private void Start()
-        {
-            _damageable.OnDeath += () => Destroy(gameObject);
-        }
-
         // Update is called once per frame
         private void Update()
         {
             _agent.SetDestination(GameObject.FindGameObjectWithTag("Player").transform.position);
+        }
+
+        private void OnEnable()
+        {
+            _damageable.OnDeath += Die;
+        }
+
+        private void OnDisable()
+        {
+            _damageable.OnDeath -= Die;
+        }
+
+        private void Die()
+        {
+            Destroy(gameObject);
         }
     }
 }

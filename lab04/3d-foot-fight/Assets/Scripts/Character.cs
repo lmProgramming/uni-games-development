@@ -3,20 +3,18 @@ using States.Movement;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-// Keep if you use Input System
-
 [RequireComponent(typeof(CharacterController))]
 public class Character : MonoBehaviour
 {
-    [Header("Movement Settings")]
-    [SerializeField] public float moveSpeed = 7f;
+    [Header("Movement Settings")] [SerializeField]
+    public float moveSpeed = 7f;
 
     [SerializeField] public float airMoveSpeedMultiplier = 0.8f;
     [SerializeField] public float jumpHeight = 2.0f;
     [SerializeField] public float gravityValue = -19.62f;
 
-    [Header("Look Settings")]
-    [SerializeField] private float lookSpeed = 2.0f;
+    [Header("Look Settings")] [SerializeField]
+    private float lookSpeed = 2.0f;
 
     [SerializeField] private float lookXLimit = 80.0f;
 
@@ -34,8 +32,7 @@ public class Character : MonoBehaviour
     [Tooltip("Distance the spherecast checks downwards.")] [SerializeField]
     private float groundCheckDistance = 0.3f;
 
-    [field: SerializeField]
-    public Damageable Damageable { get; private set; }
+    [field: SerializeField] public Damageable Damageable { get; private set; }
 
     private float _cameraRotationX;
     private bool _jumpRequested;

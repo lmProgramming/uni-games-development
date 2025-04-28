@@ -24,10 +24,10 @@ namespace States.Fighting
             Debug.Log(TimeSpan.FromSeconds(_swingTime).Seconds);
             await UniTask.Delay(TimeSpan.FromSeconds(_swingTime));
 
-            var hits = new RaycastHit[] { };
-            var size = Physics.BoxCastNonAlloc(Character.transform.position, Vector3.one * 0.1f,
-                Character.transform.forward, hits, Quaternion.identity);
-            foreach (var hit in hits) hit.collider.GetComponent<Damageable>()?.TakeDamage(10);
+            var hits = new RaycastHit[25];
+            Physics.BoxCastNonAlloc(Character.transform.position, Vector3.one * 10f,
+                Character.transform.forward, hits, Quaternion.identity, 5f, LayerMask.GetMask("Enemy"));
+            foreach (var hit in hits) hit.collider?.GetComponent<Damageable>()?.TakeDamage(10);
 
             Machine.ChangeState(Character.Ready);
         }

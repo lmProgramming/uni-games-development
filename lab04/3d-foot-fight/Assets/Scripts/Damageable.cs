@@ -11,6 +11,11 @@ public class Damageable : MonoBehaviour
     public Action<float> OnDamageTaken;
     public Action OnDeath;
 
+    private void Start()
+    {
+        if (fullHealthOnStart) currentHealth = maxHealth;
+    }
+
     public void TakeDamage(float damage)
     {
         if (damage < 0)
@@ -21,7 +26,7 @@ public class Damageable : MonoBehaviour
 
         if (damage == 0 || currentHealth <= 0) return;
 
-        OnDamageTaken.Invoke(damage);
+        OnDamageTaken?.Invoke(damage);
         currentHealth -= damage;
         if (currentHealth <= 0) OnDeath.Invoke();
     }
