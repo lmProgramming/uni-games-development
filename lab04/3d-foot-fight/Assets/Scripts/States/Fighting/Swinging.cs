@@ -26,7 +26,7 @@ namespace States.Fighting
 
             var hits = new RaycastHit[25];
             Physics.BoxCastNonAlloc(Character.transform.position, Vector3.one * 10f,
-                Character.transform.forward, hits, Quaternion.identity, 5f, LayerMask.GetMask("Enemy"));
+                Character.transform.forward, hits, Quaternion.identity, 3f, LayerMask.GetMask("Enemy"));
             foreach (var hit in hits) hit.collider?.GetComponent<Damageable>()?.TakeDamage(10);
 
             Machine.ChangeState(Character.Ready);
