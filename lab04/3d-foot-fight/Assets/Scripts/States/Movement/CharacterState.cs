@@ -1,3 +1,4 @@
+using Agents;
 using EasyStateMachine;
 
 namespace States.Movement

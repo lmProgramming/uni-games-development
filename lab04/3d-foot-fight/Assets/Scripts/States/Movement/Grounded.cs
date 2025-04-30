@@ -1,12 +1,13 @@
-﻿using UnityEngine;
+﻿using Agents;
+using UnityEngine;
 
 namespace States.Movement
 {
-    public class GroundedState : CharacterState
+    public class Grounded : CharacterState
     {
         private bool _jumpRequested;
 
-        public GroundedState(Character character, MovementStateMachine stateMachine) : base(character, stateMachine)
+        public Grounded(Character character, MovementStateMachine stateMachine) : base(character, stateMachine)
         {
         }
 
@@ -39,7 +40,7 @@ namespace States.Movement
             {
                 Character.VerticalVelocity = Mathf.Sqrt(Character.jumpHeight * -2f * Character.gravityValue);
                 _jumpRequested = false;
-                Machine.ChangeState(Character.AirborneState);
+                Machine.ChangeState(Character.Airborne);
                 return;
             }
 
@@ -50,7 +51,7 @@ namespace States.Movement
         public override void PostPhysicsUpdate()
         {
             if (!Character.IsGrounded)
-                Machine.ChangeState(Character.AirborneState);
+                Machine.ChangeState(Character.Airborne);
         }
 
         public override void Exit()

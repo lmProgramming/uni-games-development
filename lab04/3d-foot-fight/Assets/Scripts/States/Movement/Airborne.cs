@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+﻿using Agents;
+using UnityEngine;
 
 namespace States.Movement
 {
-    public class AirborneState : CharacterState
+    public class Airborne : CharacterState
     {
-        public AirborneState(Character character, MovementStateMachine stateMachine) : base(character, stateMachine)
+        public Airborne(Character character, MovementStateMachine stateMachine) : base(character, stateMachine)
         {
         }
 
@@ -31,7 +32,7 @@ namespace States.Movement
             if (Character.IsGrounded &&
                 Character.VerticalVelocity <
                 0.0f)
-                Machine.ChangeState(Character.GroundedState);
+                Machine.ChangeState(Character.Grounded);
         }
 
         public override void Exit()

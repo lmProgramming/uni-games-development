@@ -1,4 +1,6 @@
-﻿namespace States.Fighting
+﻿using Agents;
+
+namespace States.Fighting
 {
     public class Ready : FightingState
     {
