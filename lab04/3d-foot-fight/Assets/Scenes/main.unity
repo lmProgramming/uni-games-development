@@ -10870,7 +10870,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b69a00c0a5b882448b6b8df2e7c885f2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.9506817
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b69a00c0a5b882448b6b8df2e7c885f2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -14413,7 +14413,7 @@ MonoBehaviour:
   <Damage>k__BackingField: 2
   <RecoveryTime>k__BackingField: 1
   <DefaultPosition>k__BackingField: {x: -0.618, y: 0.264, z: -0.23}
-  <DefaultRotation>k__BackingField: {x: 0, y: 0, z: 0, w: 0}
+  <DefaultRotation>k__BackingField: {x: 0, y: 0.70710677, z: 0, w: 0.70710677}
   <SwingTime>k__BackingField: 1
 --- !u!43 &2087892558
 Mesh:

@@ -29,6 +29,7 @@ namespace States.Fighting
 
             weapon.transform.DOLocalMoveX(weapon.transform.localPosition.x + 1.4f, _swingTime).SetEase(
                 Ease.InOutSine);
+            weapon.transform.DOLocalRotate(new Vector3(0, 0, -90), _swingTime).SetEase(Ease.InOutSine);
 
             await UniTask.Delay(TimeSpan.FromSeconds(_swingTime * 2 / 3));
 
@@ -39,7 +40,7 @@ namespace States.Fighting
 
             await UniTask.Delay(TimeSpan.FromSeconds(_swingTime * 1 / 3));
 
-            Machine.ChangeState(Character.GetRecoveryState(.2f));
+            Machine.ChangeState(Character.GetRecoveryState(weapon.RecoveryTime));
         }
     }
 }
