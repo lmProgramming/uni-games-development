@@ -40,7 +40,7 @@ namespace States.Movement
             {
                 Character.VerticalVelocity = Mathf.Sqrt(Character.jumpHeight * -2f * Character.gravityValue);
                 _jumpRequested = false;
-                Machine.ChangeState(Character.Airborne);
+                Machine.ChangeState(Character.GetAirborneState());
                 return;
             }
 
@@ -51,7 +51,7 @@ namespace States.Movement
         public override void PostPhysicsUpdate()
         {
             if (!Character.IsGrounded)
-                Machine.ChangeState(Character.Airborne);
+                Machine.ChangeState(Character.GetAirborneState());
         }
 
         public override void Exit()

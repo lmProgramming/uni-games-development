@@ -32,7 +32,7 @@ namespace States.Movement
             if (Character.IsGrounded &&
                 Character.VerticalVelocity <
                 0.0f)
-                Machine.ChangeState(Character.Grounded);
+                Machine.ChangeState(Character.GetGroundedState());
         }
 
         public override void Exit()

@@ -10,7 +10,7 @@ namespace States.Fighting
 
         public override void LogicUpdate()
         {
-            if (Character.AttackRequested) Machine.ChangeState(Character.Swinging);
+            if (Character.AttackRequested) Machine.ChangeState(Character.GetSwingingState(1f));
         }
     }
 }

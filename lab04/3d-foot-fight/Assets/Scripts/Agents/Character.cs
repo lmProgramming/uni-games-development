@@ -1,22 +1,24 @@
+using JetBrains.Annotations;
 using States.Fighting;
 using States.Movement;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Weapons;
 
 namespace Agents
 {
     [RequireComponent(typeof(CharacterController))]
     public class Character : MonoBehaviour
     {
-        [Header("Movement Settings")]
-        [SerializeField] public float moveSpeed = 7f;
+        [Header("Movement Settings")] [SerializeField]
+        public float moveSpeed = 7f;
 
         [SerializeField] public float airMoveSpeedMultiplier = 0.8f;
         [SerializeField] public float jumpHeight = 2.0f;
         [SerializeField] public float gravityValue = -19.62f;
 
-        [Header("Look Settings")]
-        [SerializeField] private float lookSpeed = 2.0f;
+        [Header("Look Settings")] [SerializeField]
+        private float lookSpeed = 2.0f;
 
         [SerializeField] private float lookXLimit = 80.0f;
 
@@ -34,10 +36,12 @@ namespace Agents
         [Tooltip("Distance the spherecast checks downwards.")] [SerializeField]
         private float groundCheckDistance = 0.3f;
 
-        [field: SerializeField]
-        public Damageable Damageable { get; private set; }
+        [field: SerializeField] public Damageable Damageable { get; private set; }
+
+        [CanBeNull] [field: SerializeField] public Weapon CurrentWeapon { get; private set; }
 
         private float _cameraRotationX;
+
         private bool _jumpRequested;
 
 
@@ -67,16 +71,21 @@ namespace Agents
             Grounded = new Grounded(this, _movementStateMachine);
             Airborne = new Airborne(this, _movementStateMachine);
 
+
             _fightingStateMachine = new FightingStateMachine();
 
             Ready = new Ready(this, _fightingStateMachine);
-            Swinging = new Swinging(this, _fightingStateMachine, 1);
+
+            SwitchWeapon(GetComponentInChildren<Weapon>());
         }
 
         private void Start()
         {
-            _movementStateMachine.Initialize(Grounded);
-            _fightingStateMachine.Initialize(Ready);
+            var grounded = new Grounded(this, _movementStateMachine);
+            _movementStateMachine.Initialize(grounded);
+
+            var ready = new Ready(this, _fightingStateMachine);
+            _fightingStateMachine.Initialize(ready);
         }
 
         private void Update()
@@ -152,6 +161,36 @@ namespace Agents
             //if (!IsGrounded) IsGrounded = Controller.isGrounded;
         }
 
+        private void SwitchWeapon(Weapon weapon)
+        {
+            CurrentWeapon = weapon;
+        }
+
+        public Swinging GetSwingingState(float swingTime)
+        {
+            return new Swinging(this, _fightingStateMachine, swingTime);
+        }
+
+        public Recovery GetRecoveryState(float recoveryTime)
+        {
+            return new Recovery(this, _fightingStateMachine, recoveryTime);
+        }
+
+        public Ready GetReadyState()
+        {
+            return Ready;
+        }
+
+        public Airborne GetAirborneState()
+        {
+            return Airborne;
+        }
+
+        public Grounded GetGroundedState()
+        {
+            return Grounded;
+        }
+
         private void ToggleCursorLock()
         {
             var isLocked = Cursor.lockState == CursorLockMode.Locked;
@@ -162,8 +201,7 @@ namespace Agents
         #region fighting states
 
         private FightingStateMachine _fightingStateMachine;
-        public FightingState Swinging { get; private set; }
-        public FightingState Ready { get; private set; }
+        public Ready Ready { get; private set; }
 
         #endregion
 

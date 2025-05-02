@@ -514,7 +514,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 3
   m_Height: 2.5
-  m_Radius: 0.5
+  m_Radius: 0.79
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -592,6 +592,7 @@ MonoBehaviour:
   groundCheckRadius: 0.4
   groundCheckDistance: 0.3
   <Damageable>k__BackingField: {fileID: 0}
+  <CurrentWeapon>k__BackingField: {fileID: 2071445897}
 --- !u!136 &172075043
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -976,6 +977,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 351392492}
+  - component: {fileID: 351392493}
   - component: {fileID: 351392491}
   m_Layer: 0
   m_Name: Context
@@ -1013,6 +1015,39 @@ Transform:
   - {fileID: 1906367829}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &351392493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 351392490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e541f7f7bc79fa34cbfc7f78959ffa9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scriptableObjectInstallers: []
+  _monoInstallers:
+  - {fileID: 351392491}
+  _installerPrefabs: []
+  _findSiblingMonoInstallers: 0
+  _autoRun: 1
+  OnPreInstall:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPostInstall:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPreResolve:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPostResolve:
+    m_PersistentCalls:
+      m_Calls: []
+  _parentNewObjectsUnderSceneContext: 0
+  _contractNames: []
+  _parentContractNames: []
 --- !u!1 &407859825
 GameObject:
   m_ObjectHideFlags: 0
@@ -3691,7 +3726,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
+  - {fileID: 2100000, guid: d5e50e79e823bc24eb68f4dc0055e2b7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14273,6 +14308,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 13a84cf3a1b6ad645bf69be0b063ff1e, type: 3}
+      propertyPath: m_TagString
+      value: SwingWeapon
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -14280,6 +14319,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 13a84cf3a1b6ad645bf69be0b063ff1e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2071445894}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 13a84cf3a1b6ad645bf69be0b063ff1e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2071445897}
   m_SourcePrefab: {fileID: 100100000, guid: 13a84cf3a1b6ad645bf69be0b063ff1e, type: 3}
 --- !u!4 &2071445891 stripped
 Transform:
@@ -14308,6 +14350,23 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2071445897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 39924486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 124de812a1e34c24a4dc5c67d8bd4a2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Damage>k__BackingField: 2
+  <RecoveryTime>k__BackingField: 1
+  <DefaultPosition>k__BackingField: {x: -0.618, y: 0.264, z: -0.23}
+  <DefaultRotation>k__BackingField: {x: 0, y: 0, z: 0, w: 0}
+  <SwingTime>k__BackingField: 1
 --- !u!43 &2087892558
 Mesh:
   m_ObjectHideFlags: 0

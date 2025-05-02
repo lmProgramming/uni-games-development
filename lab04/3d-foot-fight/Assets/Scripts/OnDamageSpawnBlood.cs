@@ -31,6 +31,6 @@ public class OnDamageSpawnBlood : MonoBehaviour
 
     private void SpawnBlood()
     {
-        _particleSpawner.SpawnBlood(transform.position);
+        _particleSpawner.SpawnBlood(transform.position + Vector3.up * 1.5f);
     }
 }
