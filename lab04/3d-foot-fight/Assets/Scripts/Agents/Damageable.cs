@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Agents
 {
@@ -9,6 +10,8 @@ namespace Agents
         public float currentHealth;
 
         [SerializeField] public bool fullHealthOnStart = true;
+        public UnityEvent<float> OnDamageTakenUnityEvent;
+        public UnityEvent OnDeathUnityEvent;
 
         public Action<float> OnDamageTaken;
         public Action OnDeath;
@@ -29,8 +32,15 @@ namespace Agents
             if (damage == 0 || currentHealth <= 0) return;
 
             OnDamageTaken?.Invoke(damage);
+            OnDamageTakenUnityEvent?.Invoke(damage);
+
             currentHealth -= damage;
-            if (currentHealth <= 0) OnDeath.Invoke();
+
+            if (currentHealth <= 0)
+            {
+                OnDeath.Invoke();
+                OnDeathUnityEvent?.Invoke();
+            }
         }
     }
 }

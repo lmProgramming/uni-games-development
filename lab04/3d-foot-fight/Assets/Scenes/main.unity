@@ -967,6 +967,52 @@ Transform:
   m_Children: []
   m_Father: {fileID: 658266828}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &351392490
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 351392492}
+  - component: {fileID: 351392491}
+  m_Layer: 0
+  m_Name: Context
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &351392491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 351392490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d20dfd01db749d6b3ed8754ccf8a951, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particleSpawner: {fileID: 1906367830}
+--- !u!4 &351392492
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 351392490}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.16828918, y: 1.7456212, z: -0.5704936}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1906367829}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &407859825
 GameObject:
   m_ObjectHideFlags: 0
@@ -1880,6 +1926,7 @@ GameObject:
   - component: {fileID: 537621649}
   - component: {fileID: 537621650}
   - component: {fileID: 537621651}
+  - component: {fileID: 537621652}
   m_Layer: 7
   m_Name: MeleeEnemy
   m_TagString: Enemy
@@ -1956,6 +2003,12 @@ MonoBehaviour:
   maxHealth: 50
   currentHealth: 1
   fullHealthOnStart: 1
+  OnDamageTakenUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDeathUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!136 &537621651
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1979,6 +2032,18 @@ CapsuleCollider:
   m_Height: 2.45
   m_Direction: 1
   m_Center: {x: 0, y: 1.17, z: 0}
+--- !u!114 &537621652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 537621646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2bc28523cf5e864898a72bf3c91d36e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &561376373
 GameObject:
   m_ObjectHideFlags: 0
@@ -12039,6 +12104,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 658266828}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1906367828
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1906367829}
+  - component: {fileID: 1906367830}
+  m_Layer: 0
+  m_Name: ParticleSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1906367829
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1906367828}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 351392492}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1906367830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1906367828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7231d275bda14297a92db8427c7c8126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bloodPrefab: {fileID: 504215717323790759, guid: ac878a92667b8b540ac39d522afcc993, type: 3}
 --- !u!1 &1907201928
 GameObject:
   m_ObjectHideFlags: 0
@@ -14787,6 +14897,7 @@ Mesh:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 351392492}
   - {fileID: 2128617396}
   - {fileID: 172075040}
   - {fileID: 658266828}
