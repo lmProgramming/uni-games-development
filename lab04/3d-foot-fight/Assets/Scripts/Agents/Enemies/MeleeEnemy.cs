@@ -9,8 +9,6 @@ namespace Agents.Enemies
     {
         [SerializeField] private Transform[] patrolPositions;
 
-        private GoToTarget _goToTargetState;
-
         private Patrolling _patrollingState;
         private AIStateMachine _stateMachine;
 
@@ -26,7 +24,6 @@ namespace Agents.Enemies
 
             _patrollingState =
                 new Patrolling(patrolPositions.Select(p => new Target(p)).ToArray(), this, _stateMachine);
-            _goToTargetState = new GoToTarget(this, _stateMachine, null);
 
             _stateMachine.Initialize(_patrollingState);
         }

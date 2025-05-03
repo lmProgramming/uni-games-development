@@ -47,4 +47,9 @@ public class GameManager : MonoBehaviour
         Debug.Log(positive ? "Nice! You win!" : "You lost!");
         SceneManager.LoadScene("main");
     }
+
+    public int GetPointsLeft()
+    {
+        return initialGameSettings.scoreGoal - currentScore;
+    }
 }

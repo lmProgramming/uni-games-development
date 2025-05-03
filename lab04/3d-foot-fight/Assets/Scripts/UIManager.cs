@@ -1,6 +1,6 @@
-using Agents.Enemies;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -12,6 +12,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI livesLeftText;
     [SerializeField] private TextMeshProUGUI healthText;
 
+    [SerializeField] private GameManager gameManager;
+
     private void Start()
     {
         Time.timeScale = 1;
@@ -21,19 +23,29 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        var prisonersLeft = FindObjectsByType<Enemy>(FindObjectsInactive.Exclude, FindObjectsSortMode.None).Length;
+        var prisonersLeft = gameManager.GetPointsLeft();
         prisonersLeftText.text = $"Poor prisoners left to kill: {prisonersLeft}";
+
+        if (Input.GetKeyDown(KeyCode.Escape)) PauseGame();
     }
 
     public void PauseGame()
     {
         Time.timeScale = 0;
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
         pauseMenu.SetActive(true);
     }
 
     public void ResumeGame()
     {
         Time.timeScale = 1;
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         pauseMenu.SetActive(false);
     }
 
@@ -46,6 +58,7 @@ public class UIManager : MonoBehaviour
     public void RestartGame()
     {
         Time.timeScale = 1;
-        // Add logic to restart the game
+
+        SceneManager.LoadScene("main");
     }
 }
