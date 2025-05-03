@@ -1,3 +1,4 @@
+using Agents;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -25,6 +26,9 @@ public class UIManager : MonoBehaviour
     {
         var prisonersLeft = gameManager.GetPointsLeft();
         prisonersLeftText.text = $"Poor prisoners left to kill: {prisonersLeft}";
+        var playerDamageable = FindAnyObjectByType<Character>().Damageable;
+
+        healthText.text = $"Health: {playerDamageable.currentHealth}";
 
         if (Input.GetKeyDown(KeyCode.Escape)) PauseGame();
     }

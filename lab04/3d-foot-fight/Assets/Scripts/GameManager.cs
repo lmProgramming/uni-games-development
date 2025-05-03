@@ -1,3 +1,4 @@
+using Agents;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -6,8 +7,9 @@ public class GameManager : MonoBehaviour
     public GameSettings initialGameSettings;
 
     public int currentLives;
-    public float currentHealth;
     public int currentScore;
+
+    [SerializeField] private Damageable playerDamageable;
 
     private void Awake()
     {
@@ -21,10 +23,14 @@ public class GameManager : MonoBehaviour
         InitializeGameState();
     }
 
+    private void Start()
+    {
+        playerDamageable.SetHealth(initialGameSettings.initialHealth, initialGameSettings.initialHealth);
+    }
+
     private void InitializeGameState()
     {
         currentLives = initialGameSettings.initialLives;
-        currentHealth = initialGameSettings.initialHealth;
     }
 
     public void OnPlayerScored()

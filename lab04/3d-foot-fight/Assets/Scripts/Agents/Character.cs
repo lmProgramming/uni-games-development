@@ -66,11 +66,12 @@ namespace Agents
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
 
+            Damageable = GetComponent<Damageable>();
+
             _movementStateMachine = new MovementStateMachine();
 
             Grounded = new Grounded(this, _movementStateMachine);
             Airborne = new Airborne(this, _movementStateMachine);
-
 
             _fightingStateMachine = new FightingStateMachine();
 
