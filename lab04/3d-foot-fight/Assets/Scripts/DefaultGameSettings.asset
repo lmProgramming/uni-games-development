@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialLives: 3
   initialHealth: 100
-  scoreGoal: 5
+  scoreGoal: 3
   hasTimeLimit: 0
   timeLimitSeconds: 180

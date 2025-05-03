@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     {
         if (initialGameSettings == null)
         {
-            Debug.LogError("Nie przypisano GameSettings do GameManager!", this);
+            Debug.LogError("Didn't assign GameSettings to GameManager!", this);
             enabled = false;
             return;
         }
@@ -30,6 +30,9 @@ public class GameManager : MonoBehaviour
     public void OnPlayerScored()
     {
         currentScore++;
+        Debug.Log($"OnPlayerScored: {currentScore}");
+        Debug.Log($"OnPlayerScored: {currentLives}");
+        Debug.Log($"OnPlayerScored: {initialGameSettings.scoreGoal}");
         if (currentScore >= initialGameSettings.scoreGoal) EndGame(true);
     }
 
@@ -39,7 +42,7 @@ public class GameManager : MonoBehaviour
         if (currentLives <= 0) EndGame(false);
     }
 
-    public void EndGame(bool positive)
+    private static void EndGame(bool positive)
     {
         Debug.Log(positive ? "Nice! You win!" : "You lost!");
         SceneManager.LoadScene("main");
