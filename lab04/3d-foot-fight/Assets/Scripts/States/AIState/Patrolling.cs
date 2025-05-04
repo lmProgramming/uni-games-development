@@ -24,7 +24,6 @@ namespace States.AIState
                 var fromPosition = Enemy.transform.position.SetY(Enemy.transform.position.y + 2f);
 
                 var direction = -(fromPosition - player.transform.position).normalized;
-                Debug.DrawLine(fromPosition, fromPosition + direction * 100, Color.red, 0.1f);
 
                 if (Physics.Raycast(fromPosition, direction, out var hit, 100))
                     if (hit.transform.CompareTag("Player"))

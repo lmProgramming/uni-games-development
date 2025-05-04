@@ -84,5 +84,16 @@ namespace Agents
             Debug.LogError("Initial health is greater than max health");
             currentHealth = maxHealth;
         }
+
+        public void Heal(int healAmount)
+        {
+            if (healAmount < 0)
+            {
+                Debug.LogError("Heal amount is negative");
+                return;
+            }
+
+            currentHealth = Mathf.Clamp(currentHealth + healAmount, currentHealth, maxHealth);
+        }
     }
 }

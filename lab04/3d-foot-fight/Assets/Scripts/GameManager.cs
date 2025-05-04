@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
     public int currentScore;
 
     [SerializeField] private Damageable playerDamageable;
+    [SerializeField] private Character playerCharacter;
+
+    private Vector3 initialPlayerPosition;
 
     private void Awake()
     {
@@ -26,6 +29,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         playerDamageable.SetHealth(initialGameSettings.initialHealth, initialGameSettings.initialHealth);
+        initialPlayerPosition = playerCharacter.transform.position;
     }
 
     private void InitializeGameState()
@@ -44,8 +48,28 @@ public class GameManager : MonoBehaviour
 
     public void OnPlayerLostLife()
     {
+        Debug.Log("OnPlayerLostLife");
         currentLives--;
-        if (currentLives <= 0) EndGame(false);
+        Debug.Log(currentLives);
+
+        if (currentLives <= 0)
+        {
+            EndGame(false);
+            return;
+        }
+
+        Respawn();
+    }
+
+    private void Respawn()
+    {
+        var controller = playerCharacter.GetComponent<CharacterController>();
+
+        controller.enabled = false;
+        playerCharacter.transform.position = initialPlayerPosition;
+        controller.enabled = true;
+
+        playerDamageable.SetHealth(initialGameSettings.initialHealth, initialGameSettings.initialHealth);
     }
 
     private static void EndGame(bool positive)
