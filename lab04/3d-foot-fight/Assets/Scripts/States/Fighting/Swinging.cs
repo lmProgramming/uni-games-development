@@ -27,18 +27,21 @@ namespace States.Fighting
 
             if (!(weapon && weapon.CompareTag("SwingWeapon"))) return;
 
-            weapon.transform.DOLocalMoveX(weapon.transform.localPosition.x + 1.4f, _swingTime).SetEase(
-                Ease.InOutSine);
-            weapon.transform.DOLocalRotate(new Vector3(0, 0, -90), _swingTime).SetEase(Ease.InOutSine);
+            var cancellationToken = Character.CancellationToken;
 
-            await UniTask.Delay(TimeSpan.FromSeconds(_swingTime * 2 / 3));
+            weapon.transform.DOLocalMoveX(weapon.transform.localPosition.x + 1.4f, _swingTime)
+                .SetEase(Ease.InOutSine);
+            weapon.transform.DOLocalRotate(new Vector3(0, 0, -90), _swingTime)
+                .SetEase(Ease.InOutSine);
+
+            await UniTask.Delay(TimeSpan.FromSeconds(_swingTime * 2 / 3), cancellationToken: cancellationToken);
 
             var hits = new RaycastHit[3];
             Physics.BoxCastNonAlloc(Character.transform.position, Vector3.one * 1f,
                 Character.transform.forward, hits, Quaternion.identity, 3f, LayerMask.GetMask("Enemy"));
             foreach (var hit in hits) hit.collider?.GetComponent<Damageable>()?.TakeDamage(10);
 
-            await UniTask.Delay(TimeSpan.FromSeconds(_swingTime * 1 / 3));
+            await UniTask.Delay(TimeSpan.FromSeconds(_swingTime * 1 / 3), cancellationToken: cancellationToken);
 
             Machine.ChangeState(Character.GetRecoveryState(weapon.RecoveryTime));
         }
