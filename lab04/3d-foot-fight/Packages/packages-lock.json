@@ -19,7 +19,7 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "19b7809655a5255756b5f9e2673d34528e152282"
+      "hash": "9b279eecd9a9068488c51f7630eb8878ef6c7e76"
     },
     "com.svermeulen.extenject": {
       "version": "file:.com.svermeulen.extenject@9.2.0",

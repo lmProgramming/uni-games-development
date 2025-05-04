@@ -1,6 +1,8 @@
 using System;
+using LM;
 using UnityEngine;
 using UnityEngine.Events;
+using Zenject;
 
 namespace Agents
 {
@@ -13,12 +15,36 @@ namespace Agents
         public UnityEvent<float> OnDamageTakenUnityEvent;
         public UnityEvent OnDeathUnityEvent;
 
+        [Inject] private SoundManager _soundManager;
+
         public Action<float> OnDamageTaken;
         public Action OnDeath;
 
         private void Start()
         {
             if (fullHealthOnStart) currentHealth = maxHealth;
+        }
+
+        private void OnEnable()
+        {
+            OnDamageTaken += HandleDamageTaken;
+            OnDeath += PlayHitSound;
+        }
+
+        private void OnDisable()
+        {
+            OnDamageTaken -= HandleDamageTaken;
+            OnDeath -= PlayHitSound;
+        }
+
+        private void HandleDamageTaken(float damage)
+        {
+            PlayHitSound();
+        }
+
+        private void PlayHitSound()
+        {
+            _soundManager.Play("hit");
         }
 
         public void TakeDamage(float damage)

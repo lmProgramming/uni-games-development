@@ -3994,6 +3994,7 @@ MonoBehaviour:
   - {fileID: 470301593}
   - {fileID: 913610877}
   damage: 10
+  damageInterval: 1
 --- !u!4 &140601270
 Transform:
   m_ObjectHideFlags: 0
@@ -5584,7 +5585,7 @@ Transform:
   m_GameObject: {fileID: 172075037}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.896, z: 0.2}
+  m_LocalPosition: {x: 2, y: 0.896, z: 27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -11843,6 +11844,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particleSpawner: {fileID: 1906367830}
+  soundManager: {fileID: 740424082}
 --- !u!4 &351392492
 Transform:
   m_ObjectHideFlags: 0
@@ -11857,6 +11859,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1906367829}
+  - {fileID: 740424083}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &351392493
@@ -11868,7 +11871,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 351392490}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e541f7f7bc79fa34cbfc7f78959ffa9f, type: 3}
+  m_Script: {fileID: 11500000, guid: 89715ad69b973a14899afa2c6730b30b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _scriptableObjectInstallers: []
@@ -21155,6 +21158,7 @@ MonoBehaviour:
   - {fileID: 470301593}
   - {fileID: 913610877}
   damage: 10
+  damageInterval: 1
 --- !u!4 &537621648
 Transform:
   m_ObjectHideFlags: 0
@@ -33760,6 +33764,81 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &740424081
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 740424083}
+  - component: {fileID: 740424082}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &740424082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 740424081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15ec21ffb5b1b1148a1848914f21b7fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - identifier: hit
+    clip: {fileID: 8300000, guid: 6e5da53dbeb51064a8b6f882809d604c, type: 3}
+    volume: 1
+    pitch: 0.45
+    isLoop: 0
+    allowOverlap: 1
+    type: 0
+    dedicatedSource: {fileID: 0}
+    originalVolume: 0
+  - identifier: wind
+    clip: {fileID: 8300000, guid: 2c1c9ac871401bd43b4f8ad7a2ce4120, type: 3}
+    volume: 1
+    pitch: 0.65
+    isLoop: 0
+    allowOverlap: 1
+    type: 0
+    dedicatedSource: {fileID: 0}
+    originalVolume: 0
+  - identifier: hello
+    clip: {fileID: 8300000, guid: d5eacef820ae1d5478b251cfcd812b12, type: 3}
+    volume: 1
+    pitch: 1
+    isLoop: 0
+    allowOverlap: 1
+    type: 0
+    dedicatedSource: {fileID: 0}
+    originalVolume: 0
+  audioSourceParent: {fileID: 740424083}
+  unityInstantiator: {fileID: 1200599987}
+  maxPoolSize: 50
+--- !u!4 &740424083
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 740424081}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.16828918, y: -1.7456212, z: 0.5704936}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 351392492}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &746449868
 Mesh:
   m_ObjectHideFlags: 0
@@ -54538,6 +54617,50 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 658266828}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1200599986
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1200599988}
+  - component: {fileID: 1200599987}
+  m_Layer: 0
+  m_Name: UnityInstantiator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1200599987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1200599986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5446cc11c9ad094387f8938725cfad1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1200599988
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1200599986}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1214561379
 GameObject:
@@ -92051,6 +92174,7 @@ MonoBehaviour:
   - {fileID: 470301593}
   - {fileID: 913610877}
   damage: 10
+  damageInterval: 1
 --- !u!4 &1938598794
 Transform:
   m_ObjectHideFlags: 0
@@ -100435,3 +100559,4 @@ SceneRoots:
   - {fileID: 1638218884}
   - {fileID: 470301593}
   - {fileID: 913610877}
+  - {fileID: 1200599988}

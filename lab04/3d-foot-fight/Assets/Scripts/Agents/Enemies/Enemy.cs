@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿using LM;
+using UnityEngine;
 using UnityEngine.AI;
+using Zenject;
 
 namespace Agents.Enemies
 {
@@ -7,6 +9,9 @@ namespace Agents.Enemies
     {
         protected NavMeshAgent Agent;
         protected Damageable Damageable;
+
+        [Inject]
+        public SoundManager SoundManager { get; protected set; }
 
         public virtual void GoTo(Target target)
         {

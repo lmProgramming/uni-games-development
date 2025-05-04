@@ -28,11 +28,18 @@ namespace States.AIState
 
                 if (Physics.Raycast(fromPosition, direction, out var hit, 100))
                     if (hit.transform.CompareTag("Player"))
+                    {
+                        Enemy.SoundManager.Play("hello");
                         Machine.ChangeState(new GoToTarget(Enemy, Machine, new Target(hit.transform)));
+                    }
             }
 
             if ((Enemy.transform.position - _patrolTargets[_currentTargetIndex].CurrentPosition).sqrMagnitude < 1f)
+            {
                 _currentTargetIndex++;
+                Enemy.SoundManager.Play("wind");
+                Debug.Log("Wind");
+            }
 
             if (_currentTargetIndex >= _patrolTargets.Length) _currentTargetIndex = 0;
 
