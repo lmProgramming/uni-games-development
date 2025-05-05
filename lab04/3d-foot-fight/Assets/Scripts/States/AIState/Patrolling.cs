@@ -7,6 +7,8 @@ namespace States.AIState
 {
     public class Patrolling : AIState
     {
+        private const float FieldOfView = 90f;
+
         private readonly Target[] _patrolTargets;
         private int _currentTargetIndex;
 
@@ -19,7 +21,6 @@ namespace States.AIState
         public override void LogicUpdate()
         {
             var player = GameObject.FindGameObjectWithTag("Player");
-            const float fieldOfView = 60f;
             if (player)
             {
                 var fromPosition = Enemy.transform.position.SetY(Enemy.transform.position.y + 2f);
@@ -30,7 +31,7 @@ namespace States.AIState
 
                 var angle = Vector3.Angle(enemyForward, directionToPlayer);
 
-                var playerInFieldOfView = angle < fieldOfView / 2f;
+                var playerInFieldOfView = angle < FieldOfView / 2f;
 
                 if (playerInFieldOfView && Physics.Raycast(fromPosition, directionToPlayer, out var hit, 100))
                     if (hit.transform.CompareTag("Player"))
