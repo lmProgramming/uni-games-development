@@ -9,11 +9,6 @@ namespace States.Movement
         {
         }
 
-        public override void Enter()
-        {
-            Debug.Log("Entering Airborne State");
-        }
-
         public override void PhysicsUpdate()
         {
             Character.VerticalVelocity += Character.gravityValue * Time.fixedDeltaTime;
@@ -33,11 +28,6 @@ namespace States.Movement
                 Character.VerticalVelocity <
                 0.0f)
                 Machine.ChangeState(Character.GetGroundedState());
-        }
-
-        public override void Exit()
-        {
-            Debug.Log("Exiting Airborne State");
         }
     }
 }

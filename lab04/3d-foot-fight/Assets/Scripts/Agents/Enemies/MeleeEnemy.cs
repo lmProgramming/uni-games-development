@@ -51,6 +51,16 @@ namespace Agents.Enemies
 
         public void OnCollisionStay(Collision other)
         {
+            CollideWith(other.gameObject);
+        }
+
+        private void OnTriggerStay(Collider other)
+        {
+            CollideWith(other.gameObject);
+        }
+
+        private void CollideWith(GameObject other)
+        {
             if (!other.transform.CompareTag("Player")) return;
 
             if (_damageTimer.IsFinished(true))

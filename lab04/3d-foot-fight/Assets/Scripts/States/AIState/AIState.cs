@@ -15,7 +15,6 @@ namespace States.AIState
 
         public override void Enter()
         {
-            Debug.Log(this);
         }
 
         public override void Exit()

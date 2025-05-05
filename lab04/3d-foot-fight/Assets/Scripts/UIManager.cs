@@ -30,6 +30,9 @@ public class UIManager : MonoBehaviour
 
         healthText.text = $"Health: {playerDamageable.currentHealth}";
 
+        var livesLeft = gameManager.currentLives;
+        livesLeftText.text = $"Lives left: {livesLeft}";
+
         if (Input.GetKeyDown(KeyCode.Escape)) PauseGame();
     }
 

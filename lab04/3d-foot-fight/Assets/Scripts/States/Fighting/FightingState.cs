@@ -15,7 +15,6 @@ namespace States.Fighting
 
         public override void Enter()
         {
-            Debug.Log(this);
         }
 
         public override void Exit()

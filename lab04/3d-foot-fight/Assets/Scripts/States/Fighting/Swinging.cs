@@ -41,7 +41,7 @@ namespace States.Fighting
             await UniTask.Delay(TimeSpan.FromSeconds(_swingTime * 2 / 3), cancellationToken: cancellationToken);
             if (cancellationToken.IsCancellationRequested) return;
 
-            var hits = new RaycastHit[3];
+            var hits = new RaycastHit[1];
             Physics.BoxCastNonAlloc(Character.transform.position, Vector3.one * 1f,
                 Character.transform.forward, hits, Quaternion.identity, 3f, LayerMask.GetMask("Enemy"));
             foreach (var hit in hits) hit.collider?.GetComponent<Damageable>()?.TakeDamage(10);

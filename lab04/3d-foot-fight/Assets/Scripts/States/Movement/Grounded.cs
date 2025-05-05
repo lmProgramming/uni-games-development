@@ -13,8 +13,6 @@ namespace States.Movement
 
         public override void Enter()
         {
-            Debug.Log("Entering Grounded State");
-
             _jumpRequested = false;
             if (Character.VerticalVelocity < 0f)
                 Character.VerticalVelocity = -2f;
@@ -52,11 +50,6 @@ namespace States.Movement
         {
             if (!Character.IsGrounded)
                 Machine.ChangeState(Character.GetAirborneState());
-        }
-
-        public override void Exit()
-        {
-            Debug.Log("Exiting Grounded State");
         }
     }
 }

@@ -40,9 +40,6 @@ public class GameManager : MonoBehaviour
     public void OnPlayerScored()
     {
         currentScore++;
-        Debug.Log($"OnPlayerScored: {currentScore}");
-        Debug.Log($"OnPlayerScored: {currentLives}");
-        Debug.Log($"OnPlayerScored: {initialGameSettings.scoreGoal}");
         if (currentScore >= initialGameSettings.scoreGoal) EndGame(true);
     }
 

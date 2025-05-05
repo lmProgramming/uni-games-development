@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DefaultGameSettings
   m_EditorClassIdentifier: 
   initialLives: 3
-  initialHealth: 100
-  scoreGoal: 3
+  initialHealth: 30
+  scoreGoal: 10
   hasTimeLimit: 0
   timeLimitSeconds: 180
