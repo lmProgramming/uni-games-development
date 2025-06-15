@@ -14,7 +14,7 @@ HUD to GUI nałożone na widok gry
 
 ### event system
 
-można dodać komponent Event Trigger, który ma listę w sobie eventów które handlure invoke'ując metody w innych komponentach
+można dodać komponent Event Trigger, który ma listę w sobie eventów które handluje invoke'ując metody w innych komponentach
 
 można własny event zrobić jak:
 
@@ -29,11 +29,11 @@ public class TestController: MonoBehaviour, TestInterface {
 ExecuteEvents.Execute<TestInterface>(target, "test", (x, y) => x.Message(y));
 ```
 
-## new input system
+### new input system
 
 gracz -> urządzenie -> interakcja -> akcja -> metoda akcji
 
-## pytania kontrolne 2a
+### pytania kontrolne 2a
 
 - jakimi terminami posługuje się tzw. nowy system wejścia?
     InputActionMap, InputAction, InputActionAsset, InputBinding
@@ -77,7 +77,7 @@ Collider musi być wtedy połaczony z Effectorem (collider.usedByEffector)
 ### pytania kontrolne 2
 
 - Jakie komponenty z pakietu Physics zostały omówione na wykładzie?
-    RigidBody, Collider, Effector, PhysicsMaterial, Joint
+    Rigidbody, Collider, Effector, PhysicsMaterial, Joint
 - Jakie cechy ma kinematyczna bryła sztywna?
     Nie podlega siłom
     Inne rzeczy się od niej odbijają
@@ -86,11 +86,11 @@ Collider musi być wtedy połaczony z Effectorem (collider.usedByEffector)
 - Czym się różni zderzacz, który jest wyzwalaczem (IsTrigger) od takiego, który nie jest?
     IsTrigger nie zmienia toru ruchu rzeczy, wywołuje tylko funkcje jak OnTriggerEnter2D
 - Czym jest efektor? Podaj 2 przykłady
-    Wchodzenie po ścianach, przechodzenie przez platformę tylko z 1 strony
+    AreaEffector - wchodzenie po ścianach, PlatformEffector - przechodzenie przez platformę tylko z 1 strony
 - Jaka jest różnica między funkcjami FixedUpdate oraz Update?
     FixedUpdate wykonywane zawsze tyle samo razy na sekundę, Update do Inputu jest
 - W jaki sposób można przenosić dane między scenami?
-    DontDestroyOnLoad, PlayerPrefs, statyczne pola
+    DontDestroyOnLoad, PlayerPrefs, statyczne pola, ScriptableObject
 
 ## Animations
 
@@ -102,7 +102,7 @@ Animator to most między prostym klipem a AnimationController z maszyną stanów
 
 AnimationEvent to event jak każdy inny wywołany w danym momencie na jakimś obiekcie na jakiejś metodzie
 
-można dla stanu w AnimatioNCotrnoller "Add Behaviour" i to tworzy np. WaitingBehaviour : StateMachineBehaviour
+można dla stanu w AnimationController "Add Behaviour" i to tworzy np. WaitingBehaviour : StateMachineBehaviour
 
 ### IMGUI
 
@@ -113,7 +113,7 @@ GUI.Label(new Rect(25, 25, 25, 25), "Label");
 
 if (GUI.Button(new Rect..., 'Button')) {...}
 
-if (GUI.RepeatButton)
+if (GUI.RepeatButton(new Rect..., 'Repeat Button')) {...}
 
 var text = ""
 text = GUI.TextField(rect..., text)
@@ -135,13 +135,13 @@ hScrollbarValue = GUI.HorizontalScrollbar(rect..., hSliderValue, howMuchCanWeSee
 - Czym może być warunkowane przejście na maszynie stanów w kontrolerze animacji?
     ExitTime, trigger, zmiana wartości int float bool
 - Wymień podstawowe elementy pozwalające na odtwarzanie dźwięków w Unity?
-    SoundClip w AudioSource
+    AudioClip w AudioSource
     AudioListener - uszy gracza
 - Czym jest IMGUI? Jaką metodę trzeba przykryć, aby z tego trybu skorzystać?
     to GUI z kodu C#;
     void OnGUI() {}
 - Czym jest PCG? Co może być generowane?
-    Procedural Context Generation; Poziomy, unikalne przedmioty, muzykę, fabułę
+    Procedural Content Generation; Poziomy, unikalne przedmioty, muzykę, fabułę
 
 ## blender
 
@@ -149,7 +149,7 @@ maya - drogie ale dobre, dobre do filmów animowanych np. Pixara
 
 autodesk 3ds max - drogie, tylko widnows, prostsze niż maya, dobre do gier
 
-blender - darmowe, open source, modelowanie, sculptowanie, animacje, ma silnik gier??
+blender - darmowe, open source, modelowanie, sculptowanie, animacje, miał silnik gier??
 
 ### principles of animation
 
@@ -176,6 +176,7 @@ whiteboxing - przygotowanie sceny najpierw z białych prostopadłościanów
 directed, point - z punktu wokół w sferze, spot - stożek/reflektor
 
 cookie - filtr co zmienia sposób emisji "kształt" światła - np. brud na drodze światła
+a dokładniej - tekstura (maska) w skali szarości modyfikująca intensywność światła
 
 ### pytania kontrolne 5
 
@@ -269,9 +270,3 @@ ragdoll: wyłącz animator, dla każdej kończyny wyłącz isKinematic, włącz 
     Agent, Goal, Actions [Warunki wstępne, końcowe, koszt], Planer
 - W jaki sposób można w Unity zapisywać/odczytywać dane?
     Klasycznie JsonUtility.ToJson i File.WriteAllText
-
-## do nauczenia
-
-system UI Unity
-
-2 abcd?
