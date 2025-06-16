@@ -207,7 +207,7 @@ occlussion culling - za innymi obiektami (occluder - zasłaniający, ocludee - z
 
 backface culling - odrzucanie back faces
 
-blend trees - drzewa mieszające - maszyna stanów mieszająca np. bieganie i chód w zależności od prędkości
+blend trees - drzewa mieszające animacje - maszyna stanów mieszająca np. bieganie i chód w zależności od prędkości
 
 ScriptableObject - kontener danych, może być zapiasny jako x.asset, CreateAssetMenu(filename, menuname)
 
@@ -226,11 +226,11 @@ ragdoll: wyłącz animator, dla każdej kończyny wyłącz isKinematic, włącz 
 - Wymień najważniejsze parametry kamery
     clearFlag, orthographic, fieldView, depth
 - Na czym polega Occlusion Culling?
-    nie renderowanie obiektów które są za innymi
+    nie renderowanie obiektów które są schowane za innymi
 - Do czego służą drzewa mieszające? Jakie typy drzew mieszających można zdefiniować w Unity
     do mieszania ze sobą animacji; (chodzi o liczbę parametrów) 1D, 2D, Direct (mapa wag)
-- Do czego w Unity służy kwaternion? Jakie operacje najczęściej na nim się wykonuje?
-    rotacja; Euler(), Slerp(), Identity, mnożenie q1 x q2, q1 x v1 (obracanie)
+- Do czego w Unity służy quaternion? Jakie operacje najczęściej na nim się wykonuje?
+    reprezentacja rotacji; Euler(), Slerp(), Identity, mnożenie q1 x q2, q1 x v1 (obracanie)
 - Czym jest Ragdoll?
     technika animacji proceduralnej
 - Do czego służy obiekt skryptowy? Jakim podlega ograniczeniom?
